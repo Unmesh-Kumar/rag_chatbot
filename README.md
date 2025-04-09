@@ -13,7 +13,6 @@ _Chat UI Preview_
 - Returns `"I don't know"` if question is not answerable
 - Beautiful chat UI using TailwindCSS
 - Displays full conversation history (until page refresh)
-- Deployable on Render
 
 ## 🛠️ Setup Instructions
 
