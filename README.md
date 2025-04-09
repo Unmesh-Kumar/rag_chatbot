@@ -1,7 +1,7 @@
 # 🧠 Angel One RAG Chatbot
 
 A Retrieval-Augmented Generation (RAG) chatbot built using Django and LangChain. It can answer customer support queries based on Angel One's support site and provided insurance documents (`.pdf`, `.docx`). If a query is out of scope, it responds with `"I don't know"`. It has been deployed at https://rag-chatbot-1-1w4e.onrender.com
-
+![Chat UI Screenshot](assets/bot.png)
 ---
 
 ## 🚀 Features
