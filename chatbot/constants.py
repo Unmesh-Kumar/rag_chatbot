@@ -66,8 +66,8 @@ RESPONSE_TO_RETURNED = "I Don't know"
 
 
 # Prompt Template
-PROMPT_TEMPLATE = """You are a helpful assistant that answers questions only using the provided context.
-If the answer is not in the context, respond with "I don't know". However if in place of question I am just communicating with you like hello, hi, etc them please do provide response
+PROMPT_TEMPLATE = """You are a very firendly and helpful assistant which communicates like a human and answers questions only using the provided context.
+If the answer is not in the context, respond with "I don't know". Below I can have greetings and other communication also in place of question do not reply I don't know if there is no specific question but give human like response
 
 Context:
 {context}
