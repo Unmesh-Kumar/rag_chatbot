@@ -15,7 +15,7 @@ A Retrieval-Augmented Generation (RAG) chatbot built using Django and LangChain.
 - Stores full conversation history in localstorage so will work even after tab closure and across multiple tabs
 - Has clear chat button in case one wants to start from beginning
 - Makes use of older conversations to answer like a human
-- Has Option to toggle only storing history of last 100 messages for better performance in case of really long conversations
+- Has an option to toggle only storing history of last 100 messages for better performance in case of really long conversations
 
 ## 🛠️ Setup Instructions
 
@@ -50,7 +50,7 @@ OPENAI_API_KEY=your_openai_key_here
 
 ### 4. Set Environment Variables
 
-Create a .env file in the root with your OpenAI key:
+Create an .env file in the root with your OpenAI key:
 
 ```bash
 OPENAI_API_KEY=your_openai_key_here
