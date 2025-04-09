@@ -67,7 +67,7 @@ RESPONSE_TO_RETURNED = "I Don't know"
 
 # Prompt Template
 PROMPT_TEMPLATE = """You are a helpful assistant that answers questions only using the provided context.
-If the answer is not in the context, respond with "I don't know".
+If the answer is not in the context, respond with "I don't know". However if in place of question I am just communicating with you like hello, hi, etc them please do provide response
 
 Context:
 {context}

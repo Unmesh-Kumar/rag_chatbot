@@ -7,7 +7,7 @@ from .constants import SUPPORT_SITE_URL, SUPPORT, HTML_PARSER, NEWLINE, P_TAG,\
 LI_TAG, H1_TAG, H2_TAG, H3_TAG, A_TAG, HREF_TAG, SITE_REQUEST_TIMEOUT, \
 SITE_REQUEST_RETRIES, SITE_REQUEST_BACKOFF
 
-def get_all_support_links(base_url=SUPPORT_SITE_URL, max_pages=1000):
+def get_all_support_links(base_url=SUPPORT_SITE_URL, max_pages=10000):
    visited = set()
    to_visit = deque([base_url])
    all_links = []
