@@ -13,39 +13,6 @@ A Retrieval-Augmented Generation (RAG) chatbot built using Django and LangChain.
 - Displays full conversation history (until page refresh)
 - Deployable on Render
 
----
-
-## 📁 Project Structure
-rag_chatbot/
-│
-├── chatbot/                   # Core app
-│   ├── templates/chatbot/chat.html   # Chat UI
-│   ├── static/                # JS/CSS (if needed)
-│   ├── management/commands/   # Custom commands
-│   ├── constants.py
-│   ├── insurance_utils.py     # For loading PDF/DOCX
-│   ├── web_scraper.py         # For scraping Angel One support site
-│   ├── vector_store_utils.py  # Builds vectorstore
-│   ├── rag_qa.py              # Handles RAG logic
-│   ├── views.py
-│   └── urls.py
-│
-├── data/
-│   ├── insurance_docs/                  # Insurance PDFs
-│   
-│   
-│
-├── rag_chatbot/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│
-├── manage.py
-├── requirements.txt
-└── README.md
-
----
-
 ## 🛠️ Setup Instructions
 
 ### 1. Clone the Repository
