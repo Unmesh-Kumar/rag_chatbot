@@ -1,0 +1,47 @@
+/* Smooth transition between themes */
+html {
+   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar styling */
+#chat-box::-webkit-scrollbar {
+   width: 8px;
+}
+#chat-box::-webkit-scrollbar-track {
+   background: transparent;
+}
+#chat-box::-webkit-scrollbar-thumb {
+   background-color: rgba(100, 100, 100, 0.3);
+   border-radius: 4px;
+}
+#chat-box::-webkit-scrollbar-thumb:hover {
+   background-color: rgba(100, 100, 100, 0.5);
+}
+
+/* For Firefox */
+#chat-box {
+   scrollbar-width: thin;
+   scrollbar-color: rgba(100, 100, 100, 0.3) transparent;
+}
+
+/* Button hover effects */
+#toggle-limit:hover,
+#clear-chat:hover {
+   opacity: 0.9;
+   transition: opacity 0.2s ease-in-out;
+}
+
+/* Responsive font sizing */
+@media (max-width: 600px) {
+   h1 {
+       font-size: 1.25rem;
+   }
+
+   #user-input {
+       font-size: 0.875rem;
+   }
+
+   button {
+       font-size: 0.875rem;
+   }
+}
