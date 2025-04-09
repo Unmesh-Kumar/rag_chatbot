@@ -18,6 +18,13 @@ TEXT_KEY = "text"
 METADATA_KEY = "metadata"
 SOURCE_KEY = "source"
 TYPE_KEY = "type"
+RESULT_KEY = "result"
+CONTEXT_KEY = "context"
+QUESTION_KEY = "question"
+ANSWER_KEY = "answer"
+ERROR_KEY = "error"
+SOURCE_DOCUMENTS_KEY = "source_documents"
+SEARCH_KWARGS_K = "k"
 
 #Parser
 HTML_PARSER = "html.parser"
@@ -47,3 +54,25 @@ CHUNK_OVERLAP = 50
 
 # command line flags
 REFRESH_FLAG = "--refresh"
+
+# LLM RAG config
+SEARCH_KWARGS = 3
+MODEL_TO_BE_USED = "gpt-3.5-turbo"
+
+
+# Response Logic
+NOT_KNOWN_WORDS = ["", "i don't know", "idk", "not sure"]
+RESPONSE_TO_RETURNED = "I Don't know"
+
+
+# Prompt Template
+PROMPT_TEMPLATE = """You are a helpful assistant that answers questions only using the provided context.
+If the answer is not in the context, respond with "I don't know".
+
+Context:
+{context}
+
+Question:
+{question}
+
+Answer:"""

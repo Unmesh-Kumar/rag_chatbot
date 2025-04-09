@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from .rag_qa import get_answer
+import json
+
+from .constants import ANSWER_KEY, QUESTION_KEY, ERROR_KEY
 
 def chat_page(request):
    return render(request, "chatbot/chat.html")
@@ -8,5 +12,15 @@ def chat_page(request):
 @csrf_exempt
 def ask(request):
    if request.method == "POST":
-      return JsonResponse({"answer": "I don't know."})
-   return JsonResponse({"error": "Method Not Allowed"}, status=405)
+      try:
+         data = json.loads(request.body)
+         question = data.get(Q, QUESTION_KEY).strip()
+
+         if not question:
+               return JsonResponse({ANSWER_KEY: "❌ Please provide a valid question."})
+
+         answer, _ = get_answer(question)
+         return JsonResponse({ANSWER_KEY: answer})
+      except Exception as e:
+         return JsonResponse({ERROR_KEY: f"❌ Error: {str(e)}"}, status=500)
+   return JsonResponse({ERROR_KEY: "Method Not Allowed"}, status=405)
