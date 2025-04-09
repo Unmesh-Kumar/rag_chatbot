@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angel One Chatbot</title>
+    <link rel="stylesheet" href="/static/chatbot/style.css">
+</head>
+<body>
+    <div class="chatbox">
+        <h2>Ask your question</h2>
+        <input type="text" id="query" placeholder="Type here...">
+        <button onclick="sendQuery()">Send</button>
+        <div id="response"></div>
+    </div>
+<script>
+function sendQuery() {
+    const query = document.getElementById("query").value;
+    fetch("/ask/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `query=${encodeURIComponent(query)}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("response").innerText = data.answer;
+    });
+}
+</script>
+</body>
+</html>
