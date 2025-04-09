@@ -45,8 +45,12 @@ chatForm.addEventListener('submit', async (e) => {
 
     appendMessage('user', question);
     chatHistory.push({ role: 'user', content: question });
-    userInput.value = '';
+    // Limit to last 100 messages
+    if (chatHistory.length > 100) {
+        chatHistory = chatHistory.slice(-100);
+    }
     localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    userInput.value = '';
 
     try {
         const response = await fetch('/chat/', {
@@ -60,6 +64,9 @@ chatForm.addEventListener('submit', async (e) => {
         const data = await response.json();
         appendMessage('bot', data.answer);
         chatHistory.push({ role: 'bot', content: data.answer });
+        if (chatHistory.length > 100) {
+            chatHistory = chatHistory.slice(-100);
+        }
         localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
     } catch (error) {
         appendMessage('bot', "❌ Sorry, something went wrong.");

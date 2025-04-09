@@ -14,7 +14,7 @@ A Retrieval-Augmented Generation (RAG) chatbot built using Django and LangChain.
 - Beautiful chat UI using TailwindCSS
 - Stores full conversation history in localstorage so will work even after tab closure and across multiple tabs
 - Has clear chat button in case one wants to start from beginning
-- Makes use of other conversation to answer like a human  
+- Makes use of older conversation to answer like a human
 
 ## 🛠️ Setup Instructions
 
