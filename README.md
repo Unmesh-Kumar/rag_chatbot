@@ -12,7 +12,9 @@ A Retrieval-Augmented Generation (RAG) chatbot built using Django and LangChain.
 - Sources: Angel One Support Website + Insurance PDFs/DOCX
 - Returns `"I don't know"` if question is not answerable
 - Beautiful chat UI using TailwindCSS
-- Displays full conversation history (until page refresh)
+- Stores full conversation history in localstorage so will work even after tab closure and across multiple tabs
+- Has clear chat button in case one wants to start from beginning
+- Makes use of other conversation to answer like a human  
 
 ## 🛠️ Setup Instructions
 
