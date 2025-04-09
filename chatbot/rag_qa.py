@@ -25,9 +25,8 @@ from .constants import (
 RAG_PROMPT = PromptTemplate.from_template(PROMPT_TEMPLATE)
 
 
-def get_answer(query):
-   print(query)
-   # Loading vector store, have used allow_dangerous_deserialization=True as I am loading my trusted one
+def get_answer_with_history(query, history):
+   # Caution: I am using allow_dangerous_deserialization=True as I trust this vectorDatabase
    vectorstore = FAISS.load_local(
       VECTORSTORE_PATH,
       OpenAIEmbeddings(),
@@ -35,25 +34,27 @@ def get_answer(query):
    )
    retriever = vectorstore.as_retriever(search_kwargs={SEARCH_KWARGS_K: SEARCH_KWARGS})
 
-   # Creating chain with custom prompt and fallback
-   def validate_response(response):
-      cleaned = response.strip().lower()
-      if cleaned in NOT_KNOWN_WORDS or len(cleaned) < 10:
-         return RESPONSE_TO_RETURNED
-      return response
+   context_docs = retriever.get_relevant_documents(query)
+   context = "\n\n".join(doc.page_content for doc in context_docs)
 
-   rag_chain = (
-      {CONTEXT_KEY: RunnableLambda(lambda x: retriever.get_relevant_documents(x[QUESTION_KEY])), 
-      QUESTION_KEY: RunnableLambda(lambda x: x[QUESTION_KEY])}
-      | RAG_PROMPT
-      | ChatOpenAI(model=MODEL_TO_BE_USED)
-      | StrOutputParser()
-      | RunnableLambda(validate_response)
+   # Combining history into a single string
+   formatted_history = "\n".join(
+      f"{item['role'].capitalize()}: {item['content']}" for item in history
    )
 
-   # Running the chain
-   result_text = rag_chain.invoke({QUESTION_KEY: query})
-   print(result_text)
-   sources = [doc.metadata[SOURCE_KEY] for doc in retriever.get_relevant_documents(query)]
-   print(sources)
-   return result_text, sources
+   prompt_input = PROMPT_TEMPLATE.format(
+      context=context,
+      question=query,
+      history=formatted_history
+   )
+
+   llm = ChatOpenAI(model=MODEL_TO_BE_USED)
+   response = llm.invoke(prompt_input).content.strip()
+
+   cleaned = response.lower()
+   if cleaned in NOT_KNOWN_WORDS:
+      response = RESPONSE_TO_RETURNED
+
+   sources = [doc.metadata[SOURCE_KEY] for doc in context_docs]
+
+   return response, sources

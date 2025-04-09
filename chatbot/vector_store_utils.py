@@ -5,8 +5,17 @@ from langchain_openai import OpenAIEmbeddings
 from .insurance_utils import load_documents
 from .website_utils import get_all_support_links, extract_text_from_url
 
-from .constants import VECTORSTORE_PATH, TEXT_KEY, METADATA_KEY, SOURCE_KEY, TYPE_KEY,\
-FILE_SOURCE, WEB_SOURCE, CHUNK_SIZE, CHUNK_OVERLAP
+from .constants import (
+   VECTORSTORE_PATH, 
+   TEXT_KEY, 
+   METADATA_KEY, 
+   SOURCE_KEY, 
+   TYPE_KEY, 
+   FILE_SOURCE, 
+   WEB_SOURCE, 
+   CHUNK_SIZE, 
+   CHUNK_OVERLAP
+)
 
 
 def get_all_docs_from_local_insurance_documents():

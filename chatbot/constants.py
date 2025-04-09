@@ -23,6 +23,8 @@ CONTEXT_KEY = "context"
 QUESTION_KEY = "question"
 ANSWER_KEY = "answer"
 ERROR_KEY = "error"
+HISTORY_KEY = "history"
+SOURCES_KEY = "sources"
 SOURCE_DOCUMENTS_KEY = "source_documents"
 SEARCH_KWARGS_K = "k"
 
@@ -66,13 +68,23 @@ RESPONSE_TO_RETURNED = "I Don't know"
 
 
 # Prompt Template
-PROMPT_TEMPLATE = """You are a very firendly and helpful assistant which communicates like a human and answers questions only using the provided context.
-If the answer is not in the context, respond with "I don't know". Below I can have greetings and other communication also in place of question do not reply I don't know if there is no specific question but give human like response
+PROMPT_TEMPLATE = """
+You are a very firendly and helpful assistant which communicates like a human 
+and answers questions only using the provided context. 
+If the answer is not in the context, respond with "I don't know". 
+Below I can have greetings and other communication also in place of 
+question do not reply I don't know if there is no specific question but 
+give human like response. You will also be given the whole history of conversation 
+so that you can understand the whole context.
 
 Context:
 {context}
 
+Conversation History:
+{history}
+
 Question:
 {question}
 
-Answer:"""
+Answer:
+"""
