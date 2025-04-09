@@ -1,9 +1,9 @@
-/* Smooth transition */
+/* Smooth transition between themes */
 html {
    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Scrollbar styling */
+/* Custom scrollbar styling */
 #chat-box::-webkit-scrollbar {
    width: 8px;
 }
@@ -25,6 +25,7 @@ html {
 }
 
 /* Button hover effects */
+#toggle-limit:hover,
 #clear-chat:hover {
    opacity: 0.9;
    transition: opacity 0.2s ease-in-out;
