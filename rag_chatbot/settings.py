@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    os.getenv("RENDER_EXTERNAL_HOSTNAME", "rag-chatbot-1-1w4e.onrender.com")
+    os.getenv("RENDER_EXTERNAL_HOSTNAME")
 ]
 
 # Application definition
