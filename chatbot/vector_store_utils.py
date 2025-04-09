@@ -1,6 +1,6 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 
 from .insurance_utils import load_documents
 from .website_utils import get_all_support_links, extract_text_from_url
@@ -44,7 +44,7 @@ def get_all_docs_from_angelone_support_site():
    return all_docs
 
 
-def get_all_chunks():
+def get_all_chunks(all_docs):
    splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
    chunks = []
    for doc in all_docs:
@@ -70,7 +70,7 @@ def index_all_sources():
    
    print(f"Loaded {len(all_docs)} documents.")
 
-   chunks = get_all_chunks()
+   chunks = get_all_chunks(all_docs)
    print(f"Created {len(chunks)} chunks")
 
    save_all_the_chunks_in_vector_database(chunks)

@@ -14,13 +14,17 @@ def ask(request):
    if request.method == "POST":
       try:
          data = json.loads(request.body)
-         question = data.get(Q, QUESTION_KEY).strip()
+         question = data.get(QUESTION_KEY, "").strip()
+
+         print(question)
 
          if not question:
-               return JsonResponse({ANSWER_KEY: "❌ Please provide a valid question."})
+            return JsonResponse({ANSWER_KEY: "❌ Please provide a valid question."})
 
-         answer, _ = get_answer(question)
+         answer, source = get_answer(question)
+         print(answer, source)
          return JsonResponse({ANSWER_KEY: answer})
       except Exception as e:
+         raise e
          return JsonResponse({ERROR_KEY: f"❌ Error: {str(e)}"}, status=500)
    return JsonResponse({ERROR_KEY: "Method Not Allowed"}, status=405)
