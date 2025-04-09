@@ -27,7 +27,9 @@ def get_all_docs_from_local_insurance_documents():
 def get_all_docs_from_angelone_support_site():
    all_docs = []
    links = get_all_support_links()
+   order = 1
    for link in links:
+      print(f"scraping {order} out of {len(links)} total pages")
       text = extract_text_from_url(link)
       if text.strip():
          all_docs.append({
@@ -37,6 +39,7 @@ def get_all_docs_from_angelone_support_site():
                   TYPE_KEY: WEB_SOURCE
                }
          })
+      order +=1
    
    return all_docs
 
