@@ -22,7 +22,7 @@ A Retrieval-Augmented Generation (RAG) chatbot built using Django and LangChain.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/rag_chatbot
+git clone https://github.com/Unmesh-Kumar/rag_chatbot.git
 ```
 
 ### 2. Set up Virtual Environment
