@@ -22,6 +22,5 @@ def ask(request):
          answer, sources = get_answer_with_history(question, history)
          return JsonResponse({ANSWER_KEY: answer, SOURCES_KEY: sources})
       except Exception as e:
-         raise e
          return JsonResponse({ERROR_KEY: f"❌ Error: {str(e)}"}, status=500)
    return JsonResponse({ERROR_KEY: "Method Not Allowed"}, status=405)
