@@ -3,8 +3,6 @@ from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.chat_models import ChatOpenAI
 
 from langchain.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnableLambda
 
 from .constants import (
    VECTORSTORE_PATH,
@@ -24,16 +22,18 @@ from .constants import (
 # Prompt with fallback instruction
 RAG_PROMPT = PromptTemplate.from_template(PROMPT_TEMPLATE)
 
+# Caution: I am using allow_dangerous_deserialization=True as I trust this vectorDatabase
+vectorstore = FAISS.load_local(
+   VECTORSTORE_PATH,
+   OpenAIEmbeddings(),
+   allow_dangerous_deserialization=True
+)
+retriever = vectorstore.as_retriever(search_kwargs={SEARCH_KWARGS_K: SEARCH_KWARGS})
+
 
 def get_answer_with_history(query, history):
-   # Caution: I am using allow_dangerous_deserialization=True as I trust this vectorDatabase
-   vectorstore = FAISS.load_local(
-      VECTORSTORE_PATH,
-      OpenAIEmbeddings(),
-      allow_dangerous_deserialization=True
-   )
-   retriever = vectorstore.as_retriever(search_kwargs={SEARCH_KWARGS_K: SEARCH_KWARGS})
-
+   global vectorstore
+   global retriever
    context_docs = retriever.get_relevant_documents(query)
    context = "\n\n".join(doc.page_content for doc in context_docs)
 
